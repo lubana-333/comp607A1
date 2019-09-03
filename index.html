@@ -1,0 +1,168 @@
+<html>
+<head>
+	
+	<script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
+  
+    <script>
+            var queue;
+
+            function preloadAssets(){
+
+                var load = new createjs.LoadQueue();
+                load.loadfile({src:"assets/earth.png"});
+                load.loadfile({src:"images/garbage2.png"});
+                load.on("complete", init, this);
+
+            }
+            function init() {
+                var c = createjs;
+               
+                var stage = new c.Stage("slides");
+                var txt = new c.Text(" ", "bold 30px Arial");
+                txt.alpha = 0.5;
+                stage.addChild(txt);
+                c.Tween.get(txt)
+                    .to({text:"Water crisis"},2000)
+                    .to({x:800,y:500},5000,)
+                   
+                    .call(shapeCreate);
+
+                    function shapeCreate()
+                    {
+                    screen1 = new createjs.Container();
+                    var cloud = new createjs.Bitmap("assets/earth.png");
+                    createjs.Tween.get(cloud, { loop: false })
+                    .to({x:950},5500, createjs.Ease.Linear)
+                    .call(intro);
+                   
+                     screen1.addChild(cloud);
+                     stage.addChild(screen1);
+                    }
+                    function intro()
+                    {
+                        screen2=new createjs.Container();
+                        var text1 =new c.Text("", "bold 30px Arial");
+                         text1.text += "It is the lack of fresh water to fullfill water demand.\n";
+                         text1.text += "only 0.0014%  water is fresh and accessible on\n";
+                         text1.text += " EARTH.\n";
+                        text1.alpha = 0.5;
+                        createjs.Tween.get(text1,{loop:false})
+                        .to({x:150,y:399},5500,)
+                        .wait(1000)
+                        .call(reason);
+                       screen2.addChild(text1);
+                       stage.addChild(screen2);
+                    }
+                    function reason()
+                    {
+                        screen4=new createjs.Container();
+                        var factory =new c.Text("", "bold 30px Arial");
+                         factory.text += "Most of the dump yard are near to the water resources.\n";
+                         factory.text += "so most of the garbage mixed in rivers,sea,canals.\n ";
+                         factory.alpha = 0.5;
+                        createjs.Tween.get(factory,{loop:false})
+                        .to({x:35,y:500},5500, createjs.Ease.Linear)
+                        .call(wastage);
+                       screen4.addChild(factory);
+                       stage.addChild(screen4);
+                    }
+                    function wastage()
+                    {
+                    screen3 = new createjs.Container();
+                    var truck = new createjs.Bitmap("assets/garbage2.png");
+                    createjs.Tween.get(truck, {loop:false})
+                    .to({x:970},6000, createjs.Ease.Linear)
+                    .call(sources);
+                   
+                    screen3.addChild(truck);
+                     stage.addChild(screen3);
+                    }
+                   
+                    function sources()
+                    {
+                    screen5 = new createjs.Container();
+                    var industry = new c.Text("", "bold 30px Arial");
+                    industry.text += "And another reasons is ";
+                    industry.text += "Industries throw their waste materials such \n ";
+                    industry.text += " as chemicals, waste product into the canals which harm people\n ";
+                    industry.text += "and water species as well ";
+                    industry.alpha = 0.5;
+                    createjs.Tween.get(industry,{loop:false})
+                        .to({x:35,y:500},6000, createjs.Ease.Linear)
+                        .call(sea);
+                        createjs.Tween.get(industry,{loop:false})
+                 
+                   
+                    screen5.addChild(industry);
+                     stage.addChild(screen5);
+                    }
+                    function sea()
+                    {
+                    screen6 = new createjs.Container();
+                    var water = new createjs.Bitmap("assets/sea.png");
+                    createjs.Tween.get(water, {loop:false})
+                    .to({x:970},6000, createjs.Ease.Linear)
+                    .call(tap)
+                     screen6.addChild(water);
+                     stage.addChild(screen6);
+                    }
+                    function tap()
+                    {
+                    screen7 = new createjs.Container();
+                    var tap = new c.Text("", "bold 30px Arial");
+                    tap.text += "Impure water is supply to our home";
+                    tap.alpha = 0.5;
+                    createjs.Tween.get(tap,{loop:false})
+                    .to({x:350,y:500},6000, createjs.Ease.Linear)
+                    .call(home)
+                     createjs.Tween.get(tap,{loop:false})
+                    screen7.addChild(tap);
+                     stage.addChild(screen7);
+                    }
+                    function home()
+                    {
+                    screen6 = new createjs.Container();
+                    var polluted  = new createjs.Bitmap("assets/tap2.png");
+                    createjs.Tween.get(polluted, {loop:false})
+                    .to({x:400},6000, createjs.Ease.Linear)
+                     screen7.addChild(polluted);
+                     stage.addChild(screen7);
+                    }
+
+                   
+                    createjs.Ticker.addEventListener("tick", function() {
+                    stage.update();
+        });
+            }
+            </script>
+    <style>
+        body
+        {
+            margin:0px;
+           
+            padding:15px;
+        }
+        #container
+         {
+            display: block;
+            padding-left: 0;	
+            padding-right: 0;
+            width: 640px;
+            margin: 40px auto 0px auto;	
+            
+            
+         }
+    #slides{
+            background-color:#f0e7da;
+        }
+        }
+    </style>
+</head>
+<body onload="init();">
+	<div id="container">
+		<canvas id="slides" width="960" height="390">
+		</canvas>
+	</div>
+
+</body>
+</html>
